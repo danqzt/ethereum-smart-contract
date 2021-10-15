@@ -9,7 +9,8 @@ module.exports = {
     development: {
       host: "ganache-cli",
       port: 8545,
-      network_id: "57771"
+      network_id: "57771",
+      websockets: true
     },
   //  test: {
   //    host: "127.0.0.1",
