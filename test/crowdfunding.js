@@ -4,7 +4,7 @@ contract('CrowdFunding', (accounts) => {
     let contract;
     let creatorAddrs = accounts[0];
     let beneficiary = accounts[1];
-    const ONE_ETH = 1000000000000000000;
+    const ONE_ETH = 0.15 * 1e18;
     const ONGOING_STATE = '0';
     const FAILED_STATE = '1';
     const SUCCEEDED_STATE = '2';
@@ -12,7 +12,7 @@ contract('CrowdFunding', (accounts) => {
     const ERROR_MSG = 'Returned error: VM Exception while processing transaction: revert';
 
     beforeEach(async () => {
-        contract = await CrowdFunding.new('funding', 1, 10, beneficiary);
+        contract = await CrowdFunding.new('funding', 0.15 * 1.e9, 10, beneficiary);
     })
 
     it('Initialize', async () => {

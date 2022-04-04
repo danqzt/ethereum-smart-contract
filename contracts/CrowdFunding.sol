@@ -30,7 +30,10 @@ contract CrowdFunding{
     function getName() public view returns(string memory) {
         return name;
     }
-
+    
+    function getTotalCollected() public view returns(uint){
+        return totalCollected;
+    }
     function getTargetAmount() public view returns(uint){
         return targetAmount;
     }
@@ -59,13 +62,13 @@ contract CrowdFunding{
     ) public {
 
         name = _name;
-        targetAmount = ConvertLib.etherToWei(_targetAmountEth);
+        targetAmount = ConvertLib.gweiToWei(_targetAmountEth);
         fundingDeadline = currentTime() + ConvertLib.minutesToSeconds(_durationInMin);
         beneficiary = payable(_beneficiary);
         state = State.Ongoing;
     }
 
-    function currentTime() virtual internal view returns(uint){
+    function currentTime() virtual public view returns(uint){
         return block.timestamp;
     }
 

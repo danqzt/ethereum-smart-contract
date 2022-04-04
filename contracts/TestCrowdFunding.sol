@@ -13,7 +13,7 @@ contract TestCrowdFunding is CrowdFunding {
     ) CrowdFunding(_name, _targetAmountEth, _durationInMin, _beneficiary) public {
     }
     
-    function currentTime() internal view override returns(uint){
+    function currentTime() public view override returns(uint){
         return time;
     }
 

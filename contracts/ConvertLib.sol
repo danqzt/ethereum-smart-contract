@@ -6,8 +6,8 @@ library ConvertLib{
 	{
 		return amount * conversionRate;
 	}
-	function etherToWei(uint sumInEth) public pure returns(uint){
-		return sumInEth * 1 ether;
+	function gweiToWei(uint sumInEth) public pure returns(uint){
+		return sumInEth * 1 gwei;
 	}
 
 	function minutesToSeconds(uint timeInMin) public pure returns(uint){

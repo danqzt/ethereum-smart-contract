@@ -1,3 +1,9 @@
+require('dotenv').config();
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const {NFT_API_URL, INFURA_API_KEY, MNEMONIC } = process.env;
+
+
+
 module.exports = {
   // Uncommenting the defaults below 
   // provides for an easier quick-start with Ganache.
@@ -10,17 +16,36 @@ module.exports = {
       host: "ganache-cli",
       port: 8545,
       network_id: "57771",
-      websockets: true
+      websockets: true,
+      provider: () => {
+        const Web3 = require('./node_modules/web3');
+        return new Web3.providers.WebsocketProvider("ws://ganache-cli:8545");
+      }
     },
-  //  test: {
-  //    host: "127.0.0.1",
-  //    port: 7545,
-  //    network_id: "*"
-  //  }
+    ropsten: {
+      provider: function(){
+        return new HDWalletProvider(MNEMONIC, NFT_API_URL)
+      },
+      gasPrice: 25000000000,
+      network_id: "3"
+    },
+    kovan: {
+      provider: function(){
+        return new HDWalletProvider(
+          MNEMONIC, INFURA_API_KEY
+        )
+      },
+      gasPrice: 25000000000,
+      network_id: 42
+    }
   },
   compilers: {
     solc: {
-      version: "0.7.0"   // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.0",  // Fetch exact version from solc-bin (default: truffle's version)
+      optimizer:{
+        enable: true,
+        runs: 200
+      }
   }
  }
   //

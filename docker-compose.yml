@@ -7,7 +7,7 @@ services:
             context: ./docker/ganache-cli
         # note host:container
         ports:
-            - 5545:8545
+            - 8545:8545
     truffle_suite:
         container_name: truffle_suite
         build:
